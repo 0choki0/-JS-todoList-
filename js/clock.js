@@ -5,9 +5,9 @@ document.body.prepend(clock) // body태그 내부 가장 상단에 clock 위치�
 // clock 표현
 function getClock(event) {
     const date = new Date();
-    const hours = String(date.getHours());
-    const minutes = String(date.getMinutes());
-    const seconds = String(date.getSeconds());
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
     
     clock.innerText = `${hours}:${minutes}:${seconds}`;
 }
