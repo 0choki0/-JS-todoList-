@@ -24,7 +24,6 @@ function succes(position) {
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
-        console.dir(data)
         city.innerText = data.name;
         weather.innerText = data.weather[0].main;
         weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
