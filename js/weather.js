@@ -5,6 +5,7 @@ const API_KEY = config.API_KEY1; // api 입력
 // html 태그 연결
 const city = document.querySelector("span#city");
 const weather = document.querySelector("span#weather");
+const weatherIcon = document.querySelector("img#weatherIcon");
 const temp_max = document.querySelector("span#temp_max");
 const temp_min = document.querySelector("span#temp_min");
 const humidity = document.querySelector("span#humidity");
@@ -23,8 +24,10 @@ function succes(position) {
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
+        console.dir(data)
         city.innerText = data.name;
         weather.innerText = data.weather[0].main;
+        weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         temp_max.innerText = data.main.temp_max;
         temp_min.innerText = data.main.temp_min;
         humidity.innerText = data.main.humidity;
@@ -38,6 +41,7 @@ function error(event) {
     temp_max.classList.add(HIDDEN);
     temp_min.classList.add(HIDDEN);
     humidity.classList.add(HIDDEN);
+    weatherIcon.classList.add(HIDDEN);
     noCoordinate.classList.remove(HIDDEN);
 }
 
