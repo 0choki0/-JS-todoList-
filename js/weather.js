@@ -8,15 +8,18 @@ const weather = document.querySelector("span#weather");
 const temp_max = document.querySelector("span#temp_max");
 const temp_min = document.querySelector("span#temp_min");
 const humidity = document.querySelector("span#humidity");
+const noCoordinate = document.querySelector("span#noCoordinate");
+const HIDDEN = "hidden";
 
 // 현재 위치 정보 있을 경우, 날씨 정보 호출
 function succes(position) {
+    noCoordinate.classList.add(HIDDEN);
     // 위치 정보
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`; // api 호출을 위한 url
-    
+
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -30,7 +33,12 @@ function succes(position) {
 
 // 현재 위치 정보 모를 경우, error 메세지
 function error(event) {
-    console.log("위치를 찾을 수 없습니다.");
+    city.classList.add(HIDDEN);
+    weather.classList.add(HIDDEN);
+    temp_max.classList.add(HIDDEN);
+    temp_min.classList.add(HIDDEN);
+    humidity.classList.add(HIDDEN);
+    noCoordinate.classList.remove(HIDDEN);
 }
 
 // 브라우저를 통한 현재 위치 정보를 읽음
