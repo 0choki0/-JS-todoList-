@@ -1,6 +1,4 @@
-const clock =document.createElement('h1'); // h1 태그로 clock 생성
-clock.id = "clock"
-document.body.prepend(clock) // body태그 내부 가장 상단에 clock 위치시킴
+const clock =document.querySelector("h1#clock"); // html의 clock 선택
 
 // clock 표현
 function getClock(event) {
